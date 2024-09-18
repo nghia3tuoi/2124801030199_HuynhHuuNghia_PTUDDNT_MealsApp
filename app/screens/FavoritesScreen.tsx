@@ -11,7 +11,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import Colors from "../utils/color";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { RemoveFavorite } from "../store/CreateStore";
 
 export default function FavoritesScreen({ navigation }: any) {
@@ -89,20 +89,24 @@ export default function FavoritesScreen({ navigation }: any) {
             textAlign: "center",
             fontWeight: "bold",
             fontSize: 20,
+            color: "#ff9f34",
           }}
         >
           Favorite
         </Text>
       </View>
-      <View>
-        <FlatList
-          data={favorites}
-          renderItem={renderMealFavorite}
-          keyExtractor={(item: any) => {
-            return item.idMeal;
-          }}
-        />
-      </View>
+      {favorites.length <= 0 && <Text style={{textAlign: 'center', fontSize: 16, color: Colors.white}}>Bạn chưa thêm món yêu thích!</Text>}
+      {favorites.length > 0 && (
+        <View>
+          <FlatList
+            data={favorites}
+            renderItem={renderMealFavorite}
+            keyExtractor={(item: any) => {
+              return item.idMeal;
+            }}
+          />
+        </View>
+      )}
     </View>
   );
 }
@@ -111,6 +115,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: Colors.background,
   },
   item: {
     flexDirection: "row",
@@ -123,7 +128,7 @@ const styles = StyleSheet.create({
     height: 44,
   },
   title: {
-    color: Colors.black,
+    color: Colors.white,
     fontWeight: "bold",
     fontSize: 16,
     width: 200,

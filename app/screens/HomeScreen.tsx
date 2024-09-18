@@ -1,3 +1,4 @@
+import React , { useEffect, useState } from "react"; 
 import {
   View,
   Text,
@@ -10,7 +11,7 @@ import {
 } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import Colors from "../utils/color";
-import { useEffect, useState } from "react";
+
 import { fetchMeals, fetchMealsBycountrySlug } from "../utils/api";
 
 export default function HomeScreen({ navigation }: any) {
@@ -60,7 +61,7 @@ export default function HomeScreen({ navigation }: any) {
   const renderMealSeaFood = ({ item }: any) => {
     const { idMeal, strMeal, strMealThumb } = item;
     return (
-      <TouchableOpacity
+      <TouchableOpacity 
         onPress={() => {
           navigation.navigate("MealInfo", { strMeal });
         }}
@@ -98,7 +99,8 @@ export default function HomeScreen({ navigation }: any) {
                 marginBottom: 10,
                 textAlign: "center",
                 fontWeight: "bold",
-                fontSize: 20
+                fontSize: 20,
+                color: Colors.white
               }}
             >
               French
@@ -117,7 +119,8 @@ export default function HomeScreen({ navigation }: any) {
                 marginBottom: 10,
                 textAlign: "center",
                 fontWeight: "bold",
-                fontSize: 20
+                fontSize: 20,
+                color: Colors.white
               }}
             >
               Italian
@@ -141,6 +144,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flex: 1,
     justifyContent: "center",
+    backgroundColor: '#2d2013'
   },
   flatList: {
     flex: 1,
@@ -161,7 +165,7 @@ const styles = StyleSheet.create({
     height: 44,
   },
   title: {
-    color: Colors.black,
+    color: Colors.white,
     fontWeight: "bold",
     fontSize: 16,
     width: "100%",

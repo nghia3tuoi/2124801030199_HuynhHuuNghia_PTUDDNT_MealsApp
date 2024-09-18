@@ -17,7 +17,17 @@ const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 function HomeStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Colors.background,
+        },
+        headerTintColor: "#fff", // Màu văn bản của tiêu đề
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
       <Stack.Screen
         name="Home"
         component={HomeScreen}
@@ -38,7 +48,7 @@ function HomeTabs() {
     <Tab.Navigator
       initialRouteName="HomeTab"
       labeled={false}
-      barStyle={{ backgroundColor: Colors.blue }}
+      barStyle={{ backgroundColor: Colors.header }}
       activeColor={Colors.grey}
       inactiveColor={Colors.greyDark}
     >
@@ -47,7 +57,7 @@ function HomeTabs() {
         component={HomeStack}
         options={{
           tabBarIcon: (tintColor: any) => (
-            <MaterialIcons size={26} name="home" style={{ color: tintColor }} />
+            <MaterialIcons size={26} name="home" style={{ color: "#ffae50" }} />
           ),
         }}
       />
@@ -56,7 +66,7 @@ function HomeTabs() {
         component={FavoritesScreen}
         options={{
           tabBarIcon: (tintColor: any) => (
-            <MaterialIcons size={26} name="star" style={{ color: tintColor }} />
+            <MaterialIcons size={26} name="star" style={{ color: "#ffae50" }} />
           ),
         }}
       />
@@ -68,7 +78,7 @@ function HomeTabs() {
             <MaterialIcons
               size={26}
               name="settings"
-              style={{ color: tintColor }}
+              style={{ color: "#ffae50" }}
             />
           ),
         }}
@@ -81,7 +91,7 @@ function FavoriteTabs() {
     <Tab.Navigator
       initialRouteName="FavoritesTab"
       labeled={false}
-      barStyle={{ backgroundColor: Colors.blue }}
+      barStyle={{ backgroundColor: Colors.header }}
       activeColor={Colors.grey}
       inactiveColor={Colors.greyDark}
     >
@@ -90,7 +100,7 @@ function FavoriteTabs() {
         component={HomeScreen}
         options={{
           tabBarIcon: (tintColor: any) => (
-            <MaterialIcons size={26} name="home" style={{ color: tintColor }} />
+            <MaterialIcons size={26} name="home" style={{ color: "#ffae50" }} />
           ),
         }}
       />
@@ -99,7 +109,7 @@ function FavoriteTabs() {
         component={FavoritesScreen}
         options={{
           tabBarIcon: (tintColor: any) => (
-            <MaterialIcons size={26} name="star" style={{ color: tintColor }} />
+            <MaterialIcons size={26} name="star" style={{ color: "#ffae50" }} />
           ),
         }}
       />
@@ -111,7 +121,7 @@ function FavoriteTabs() {
             <MaterialIcons
               size={26}
               name="settings"
-              style={{ color: tintColor }}
+              style={{ color: "#ffae50" }}
             />
           ),
         }}
@@ -124,7 +134,7 @@ function SettingTabs() {
     <Tab.Navigator
       initialRouteName="SettingsTab"
       labeled={false}
-      barStyle={{ backgroundColor: Colors.blue }}
+      barStyle={{ backgroundColor: Colors.header }}
       activeColor={Colors.grey}
       inactiveColor={Colors.greyDark}
     >
@@ -133,7 +143,7 @@ function SettingTabs() {
         component={HomeScreen}
         options={{
           tabBarIcon: (tintColor: any) => (
-            <MaterialIcons size={26} name="home" style={{ color: tintColor }} />
+            <MaterialIcons size={26} name="home" style={{ color: "#ffae50" }} />
           ),
         }}
       />
@@ -142,7 +152,7 @@ function SettingTabs() {
         component={FavoritesScreen}
         options={{
           tabBarIcon: (tintColor: any) => (
-            <MaterialIcons size={26} name="star" style={{ color: tintColor }} />
+            <MaterialIcons size={26} name="star" style={{ color: "#ffae50" }} />
           ),
         }}
       />
@@ -154,7 +164,7 @@ function SettingTabs() {
             <MaterialIcons
               size={26}
               name="settings"
-              style={{ color: tintColor }}
+              style={{ color: "#ffae50" }}
             />
           ),
         }}
@@ -164,13 +174,24 @@ function SettingTabs() {
 }
 function DrawerNavigator() {
   return (
-    <Drawer.Navigator initialRouteName="Home">
+    <Drawer.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Colors.header, // Màu nền của header
+        },
+        headerTintColor: "#fff", // Màu văn bản của tiêu đề
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
       <Drawer.Screen
         name="Home"
         component={HomeTabs}
         options={{
           drawerIcon: (tintColor: any) => (
-            <MaterialIcons size={26} name="home" style={{ color: tintColor }} />
+            <MaterialIcons size={26} name="home" style={{ color: "#ffae50" }} />
           ),
         }}
       />
@@ -179,7 +200,7 @@ function DrawerNavigator() {
         component={FavoriteTabs}
         options={{
           drawerIcon: (tintColor: any) => (
-            <MaterialIcons size={26} name="star" style={{ color: tintColor }} />
+            <MaterialIcons size={26} name="star" style={{ color: "#ffae50" }} />
           ),
         }}
       />
@@ -191,7 +212,7 @@ function DrawerNavigator() {
             <MaterialIcons
               size={26}
               name="settings"
-              style={{ color: tintColor }}
+              style={{ color: "#ffae50" }}
             />
           ),
         }}
@@ -202,10 +223,10 @@ function DrawerNavigator() {
 
 export default function App() {
   return (
-   <Provider store={store}>
-     <NavigationContainer>
-      <DrawerNavigator />
-    </NavigationContainer>
-   </Provider>
+    <Provider store={store}>
+      <NavigationContainer>
+        <DrawerNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }

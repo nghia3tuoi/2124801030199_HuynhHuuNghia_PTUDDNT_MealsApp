@@ -13,11 +13,11 @@ import {
 import { useRoute } from "@react-navigation/native";
 import { fetchMealByName } from "../utils/api";
 import { ScrollView } from "react-native-gesture-handler";
-import WebView from "react-native-webview";
 import YoutubeIframe from "react-native-youtube-iframe";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { AddFavorite } from "../store/CreateStore";
+import Colors from "../utils/color";
 const MealInfo = ({ navigation }: any) => {
   const [meal, setMeal] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -82,7 +82,7 @@ const MealInfo = ({ navigation }: any) => {
   return (
     <ScrollView style={{ flex: 1 }}>
       {isLoading && <ActivityIndicator color={"pink"} size={"large"} />}
-      {isError && <Text>Error...</Text>}
+      {isError && <Text style={{ color: Colors.white, fontSize: 16 }}>Error...</Text>}
       {!isLoading && !isError && (
         <View style={styles.container}>
           <Text
@@ -91,67 +91,65 @@ const MealInfo = ({ navigation }: any) => {
               fontWeight: "bold",
               fontSize: 20,
               marginBottom: 20,
-              textTransform: "uppercase",
+              textTransform: "uppercase",color: "#ffae50"
             }}
           >
             {strMeal}
           </Text>
           <View style={{ flexDirection: "row", gap: 10, marginBottom: 10 }}>
             <Image
-              style={{ flex: 1, height: 150 }}
+              style={{ flex: 1, height: 150, borderRadius: 10 }}
               source={{
                 uri: strMealThumb,
               }}
             />
             <View style={{ flex: 1, gap: 5 }}>
               <View>
-                <Text>
-                  Name: <Text>{strMeal}</Text>
+                <Text style={{ color: "#ffae50", fontSize: 16 }}>
+                  Name: <Text style={{ color: Colors.white, fontSize: 16 }}>{strMeal}</Text>
                 </Text>
               </View>
               <View>
-                <Text>
-                  Type: <Text>{strCategory}</Text>
+                <Text style={{color: "#ffae50" }}>
+                  Type:{" "}
+                  <Text style={{ color: Colors.white, fontSize: 16 }}>{strCategory}</Text>
                 </Text>
               </View>
               <View>
-                <Text>
-                  Country: <Text>{strArea}</Text>
+                <Text style={{ color: "#ffae50", fontSize: 16 }}>
+                  Country:{" "}
+                  <Text style={{ color: Colors.white, fontSize: 16 }}>{strArea}</Text>
                 </Text>
               </View>
               <View style={{ marginTop: 10 }}>
-                <TouchableOpacity
+                <TouchableOpacity 
                   style={{
                     borderWidth: 1,
-                    backgroundColor: "pink",
+                    backgroundColor: "red",
                     flexDirection: "row",
                     alignItems: "center",
                     justifyContent: "center",
+                    borderRadius: 10,
+                    width: 100,
                   }}
                   onPress={() => addMealFavorite(meal)}
+                  
                 >
-                  <Text
-                    style={{
-                      fontWeight: "bold",
-                      textAlign: "center",
-                    }}
-                  >
-                    Add Favorite
-                  </Text>
+                
                   <MaterialIcons
-                    size={24}
-                    name="star-border"
-                    style={{ color: "red" }}
+                    size={30}
+                    name="star"
+                    style={{ color: "#ffae50" }}
                   />
                 </TouchableOpacity>
               </View>
             </View>
           </View>
           <View>
-            <Text style={{ fontWeight: "bold", marginBottom: 5 }}>
-              Intrustion:{" "}
+            <Text style={{ fontWeight: "bold", marginBottom: 5, color: "#ffae50", fontSize: 16, textTransform: "uppercase" }}>
+              Intrustion:
             </Text>
-            <Text>{strInstructions}</Text>
+            <Text style={{ color: Colors.white, fontSize: 16 }}>{strInstructions}</Text>
           </View>
           <View
             style={{
@@ -159,7 +157,7 @@ const MealInfo = ({ navigation }: any) => {
               marginTop: 10,
             }}
           >
-            <Text style={{ fontWeight: "bold", fontSize: 16, marginBottom: 5 }}>
+            <Text style={{ fontWeight: "bold", fontSize: 16, marginBottom: 5, color: "#ffae50", textTransform: "uppercase"  }}>
               Link Youtube:
             </Text>
             <View>
@@ -178,6 +176,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
+    backgroundColor: Colors.background,
   },
 });
 export default MealInfo;
